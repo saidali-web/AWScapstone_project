@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- HERO CAROUSEL -->
+<div class="carousel">
+    <div class="slides">
+        <img src="{{ url_for('static', filename='img/banner1.jpg') }}" class="slide active">
+        <img src="{{ url_for('static', filename='img/banner2.jpg') }}" class="slide">
+        <img src="{{ url_for('static', filename='img/banner3.jpg') }}" class="slide">
+    </div>
+
+    <!-- Arrows -->
+    <button class="nav prev">&#10094;</button>
+    <button class="nav next">&#10095;</button>
+
+    <!-- Dots -->
+    <div class="dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </div>
+</div>
+
+<h2 class="section-title">Recommended Movies</h2>
+
+{% if movies %}
+<div class="movies" id="movieList">
+    {% for movie in movies %}
+    <div class="movie-card" data-title="{{ movie.title | lower }}">
+        <img src="{{ url_for('static', filename=movie.poster) }}">
+        <h4>{{ movie.title }}</h4>
+        <p>{{ movie.language }}</p>
+        <a href="/book/{{ movie.id }}" class="book-btn">Book Now</a>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p>No movies found.</p>
+{% endif %}
+
+{% endblock %}

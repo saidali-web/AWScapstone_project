@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CineBooker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<header class="navbar">
+    <!-- LEFT : LOGO + SEARCH -->
+    <div class="nav-left">
+        <div class="logo">🎬 CineBooker</div>
+
+    <input type="text" id="searchInput" placeholder="Search for Movies...">
+
+
+    </div>
+
+    <!-- RIGHT : LOCATION + AUTH -->
+    <div class="nav-right">
+        <!-- LOCATION -->
+        <form method="post" action="/set_city">
+            <select name="city" onchange="this.form.submit()" class="city-dropdown">
+                <option value="Chennai" {% if city=="Chennai" %}selected{% endif %}>Chennai</option>
+                <option value="Bangalore" {% if city=="Bangalore" %}selected{% endif %}>Bangalore</option>
+                <option value="Warangal" {% if city=="Warangal" %}selected{% endif %}>Warangal</option>
+            </select>
+        </form>
+
+        {% if session.get("user_id") %}
+            <a href="/my_bookings" class="nav-link">My Bookings</a>
+            <a href="/logout" class="btn-outline">Logout</a>
+        {% else %}
+            <a href="/login" class="btn-outline">Login</a>
+            <a href="/signup" class="btn-primary">Sign Up</a>
+        {% endif %}
+    </div>
+</header>
+
+
+
+<div class="content">
+    {% block content %}
+    {% endblock %}
+</div>
+<script src="{{ url_for('static', filename='js/location.js') }}"></script>
+
+</body>
+</html>

@@ -1,0 +1,1059 @@
+/* ---------------- GLOBAL ---------------- */
+:root {
+  --primary: #e50914;      /* BookMyShow red */
+  --primary-dark: #b20710;
+  --success: #2ecc71;
+  --text-dark: #222;
+  --text-light: #666;
+  --bg-light: #f6f7f9;
+  --card-bg: #ffffff;
+  --border: #e0e0e0;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+}
+
+.content {
+    padding: 30px;
+}
+
+/* ---------------- NAVBAR ---------------- */
+/* ===== NAVBAR LAYOUT ===== */
+.navbar {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 20px;
+  padding: 12px 40px;
+  background: white;
+  border-bottom: 1px solid #ddd;
+}
+
+.nav-left .logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #e50914;
+}
+
+/* SEARCH */
+.nav-center {
+  display: flex;
+  justify-content: center;
+}
+
+.search-bar {
+  width: 70%;
+  max-width: 520px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+/* RIGHT */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.city-dropdown {
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.nav-link {
+  text-decoration: none;
+  font-weight: 600;
+  color: #333;
+}
+
+.btn-outline {
+  border: 1px solid #e50914;
+  padding: 8px 14px;
+  border-radius: 6px;
+  color: #e50914;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: #e50914;
+  padding: 8px 16px;
+  border-radius: 6px;
+  color: white;
+  text-decoration: none;
+}
+
+
+/* ---------------- MOVIES ---------------- */
+.movies {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+}
+
+.movie-card {
+  background: var(--card-bg);
+  border-radius: 10px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.movie-card:hover {
+  transform: translateY(-5px);
+}
+
+.movie-card img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+.movie-card h4 {
+  margin: 12px;
+}
+
+.movie-card p {
+  margin: 0 12px;
+  color: var(--text-light);
+}
+
+.book-btn {
+  width: 90%;
+  margin: 12px auto 16px;
+  display: block;
+  background: var(--primary);
+  color: white;
+  border-radius: 6px;
+}
+
+
+/* ---------------- THEATRES ---------------- */
+.theatre-card {
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+}
+
+.show-times {
+    margin-top: 8px;
+}
+
+.show-time {
+    display: inline-block;
+    padding: 8px 12px;
+    margin-right: 10px;
+    border: 1px solid #4caf50;
+    border-radius: 4px;
+    color: #4caf50;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.show-time:hover {
+    background: #4caf50;
+    color: white;
+}
+
+/* ---------------- SEATS ---------------- */
+.screen {
+    margin: 30px auto;
+    width: 60%;
+    text-align: center;
+    padding: 10px;
+    border-top: 4px solid #ccc;
+    font-weight: bold;
+    color: #555;
+}
+
+/* Seat Class Headings */
+.seat-class {
+    margin-top: 40px;
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Seat Rows */
+.seat-row {
+    display: flex;
+    align-items: center;
+    margin: 6px 0;
+}
+
+.row-label {
+    width: 35px;
+    font-weight: bold;
+}
+
+/* Seat Box */
+.seat {
+    width: 34px;
+    height: 34px;
+    border: 1px solid #4caf50;
+    color: #4caf50;
+    margin: 4px;
+    text-align: center;
+    line-height: 34px;
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: 0.2s;
+    background: white;
+}
+
+/* Hide checkbox */
+.seat input {
+    display: none;
+}
+
+/* 🟩 HOVER (light green) */
+.seat:hover {
+    background: #e8f5e9;
+}
+
+/* ✅ SELECTED (solid green) */
+.seat input:checked + span,
+.seat.selected {
+    background: #4caf50;
+    color: white;
+    border-color: #4caf50;
+}
+
+/* ⛔ BOOKED */
+.seat.booked {
+    background: #ddd;
+    border-color: #aaa;
+    color: #aaa;
+    cursor: not-allowed;
+}
+
+/* ---------------- LEGEND ---------------- */
+.legend {
+    margin-top: 20px;
+}
+
+.legend span {
+    margin-right: 15px;
+    font-size: 14px;
+}
+
+.legend .available {
+    color: #4caf50;
+}
+
+.legend .selected {
+    color: #4caf50;
+    font-weight: bold;
+}
+
+.legend .sold {
+    color: #999;
+}
+
+.booking-summary {
+    margin-top: 20px;
+    padding: 15px;
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    font-size: 16px;
+}
+
+.booking-summary p {
+    margin: 6px 0;
+}
+
+/* ================= SCREEN UI ================= */
+
+.screen-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0 40px;
+}
+
+.screen-box {
+    width: 60%;
+    height: 35px;
+    background: #e0e0e0;          /* light ash */
+    border: 2px solid #bdbdbd;
+    border-radius: 6px;
+    text-align: center;
+    line-height: 35px;
+    font-weight: bold;
+    color: #555;
+    letter-spacing: 2px;
+    box-shadow: inset 0 -4px 6px rgba(0,0,0,0.1);
+}
+
+/* Seats appear BELOW screen (real theatre feel) */
+.seat-section {
+    margin-top: 30px;
+}
+
+/* Gap between Balcony & First Class */
+.class-gap {
+    height: 45px;
+}
+
+
+/* ===== SEAT LAYOUT ===== */
+.seat-section {
+    margin: 30px 0;
+}
+
+.seat-class {
+    font-size: 18px;
+    margin-bottom: 12px;
+}
+
+.seat-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.row-label {
+    width: 35px;
+    font-weight: bold;
+}
+
+.seat {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #4caf50;
+    border-radius: 4px;
+    margin: 4px;
+    text-align: center;
+    line-height: 32px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.seat input {
+    display: none;
+}
+
+.seat.available {
+    color: #4caf50;
+}
+
+.seat.available:hover {
+    background: #e8f5e9;
+}
+
+/* SELECTED */
+.seat input:checked + span {
+    background: #4caf50;
+    color: white;
+    border-radius: 4px;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+/* SOLD */
+.seat.sold {
+    background: #ddd;
+    border-color: #aaa;
+    color: #aaa;
+    cursor: not-allowed;
+}
+
+/* ===== SCREEN ===== */
+.screen-wrapper {
+    margin: 50px auto;
+    text-align: center;
+}
+
+.screen-box {
+    width: 70%;
+    height: 22px;
+    background: #e0e0e0;
+    margin: auto;
+    border-radius: 0 0 50px 50px;
+    box-shadow: inset 0 -4px 6px rgba(0,0,0,0.2);
+}
+
+.screen-text {
+    font-size: 14px;
+    margin-top: 8px;
+    color: #555;
+}
+
+/* ===== CONFIRM ===== */
+.confirm-btn {
+    margin-top: 30px;
+    padding: 12px 30px;
+    font-size: 16px;
+    background: #e50914;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+
+.booking-summary {
+    position: sticky;
+    bottom: 0;
+    background: white;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #ddd;
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
+}
+
+.booking-summary span:first-child {
+    color: #333;
+}
+
+.booking-summary span:last-child {
+    color: #e50914;
+}
+
+/* ================= MODAL ================= */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-box {
+    background: white;
+    padding: 30px;
+    width: 380px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.vehicle-img {
+    width: 140px;
+    margin: 20px 0;
+}
+
+.seat-count {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.count-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #eee;
+    line-height: 40px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.count-btn.active {
+    background: #e50914;
+    color: white;
+}
+
+.select-seat-btn {
+    width: 100%;
+    padding: 12px;
+    background: #e50914;
+    color: white;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* ===== Seat Count Modal ===== */
+.seat-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.seat-modal-box {
+    background: white;
+    padding: 25px;
+    width: 360px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.vehicle-img {
+    width: 120px;
+    margin: 15px 0;
+}
+
+.seat-count-options {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.count-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #e71a0f;
+    background: white;
+    cursor: pointer;
+}
+
+.count-btn.active {
+    background: #e71a0f;
+    color: white;
+}
+
+
+/* POPUP */
+.popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.popup-box {
+    background: white;
+    padding: 30px;
+    width: 350px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.seat-image {
+    width: 120px;
+    margin: 15px 0;
+}
+
+.seat-count {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.count-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #e50914;
+    background: white;
+    cursor: pointer;
+}
+
+.count-btn.active {
+    background: #e50914;
+    color: white;
+}
+
+.popup-confirm {
+    background: #e50914;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.ticket-page {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.ticket-card {
+    width: 420px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    padding: 15px;
+}
+
+.ticket-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ticket-header .done {
+    color: #e71a0f;
+    font-weight: bold;
+}
+
+.ticket-top {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.movie-poster {
+    width: 70px;
+    height: 100px;
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+.ticket-info {
+    margin-left: 15px;
+}
+
+.ticket-info h3 {
+    margin: 0;
+}
+
+.stamp {
+    position: absolute;
+    right: 0;
+    top: 0;
+    border: 2px dashed #4caf50;
+    color: #4caf50;
+    padding: 6px;
+    font-size: 12px;
+    transform: rotate(-10deg);
+}
+
+.ticket-middle {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    border-top: 1px dashed #ccc;
+    padding-top: 10px;
+}
+
+.ticket-qr {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.ticket-qr img {
+    width: 150px;
+}
+
+/* ===== Confirmation Page Heading ===== */
+.confirmation-header {
+    text-align: center;
+    margin: 30px 0 20px;
+}
+
+.confirmation-header h1 {
+    font-size: 28px;
+    margin: 0;
+}
+
+.confirmation-header .status {
+    color: #e71a0f;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+/* ===== Ticket Centering ===== */
+.ticket-page {
+    display: flex;
+    justify-content: center;
+}
+
+/* ===== Ticket Card ===== */
+.ticket-card {
+    width: 420px;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    padding: 16px;
+}
+
+/* ===== PAGE TITLE ===== */
+.page-title {
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* ===== TICKET LAYOUT ===== */
+.ticket-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.ticket-card {
+    width: 100%;
+    max-width: 420px;
+    background: #fff;
+    border-radius: 12px;
+    padding: 18px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+/* ===== HEADER ===== */
+.ticket-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px dashed #ccc;
+    padding-bottom: 12px;
+}
+
+.ticket-header h3 {
+    margin: 0;
+}
+
+.ticket-header p {
+    margin: 4px 0;
+    font-size: 14px;
+}
+
+.ticket-stamp {
+    border: 2px dashed #4caf50;
+    color: #4caf50;
+    padding: 6px 10px;
+    font-size: 12px;
+    font-weight: bold;
+    transform: rotate(-8deg);
+}
+
+/* ===== INFO ===== */
+.ticket-info {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0;
+    text-align: center;
+}
+
+.ticket-info div {
+    flex: 1;
+}
+
+.ticket-info p {
+    margin: 4px 0;
+}
+
+/* ===== QR ===== */
+.qr-section {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.qr-section img {
+    width: 160px;
+    max-width: 100%;
+}
+
+.qr-id {
+    margin-top: 8px;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+
+/* ===== ACTION ===== */
+.ticket-actions {
+    margin-top: 18px;
+    text-align: center;
+}
+
+/* ===== MOBILE FIX ===== */
+@media (max-width: 480px) {
+    .ticket-info {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .ticket-header {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .ticket-stamp {
+        align-self: flex-start;
+    }
+}
+
+
+@media (max-width: 768px) {
+  .navbar {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .nav-center {
+    order: 3;
+  }
+
+  .nav-right {
+    justify-content: space-between;
+  }
+
+  .search-bar {
+    width: 100%;
+  }
+}
+
+/* ===== NAVBAR LAYOUT ===== */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 30px;
+    background: white;
+    border-bottom: 1px solid #e0e0e0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+/* LEFT SIDE */
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #e50914;
+    white-space: nowrap;
+}
+
+/* SEARCH BAR */
+.search-bar {
+    width: 380px;
+    max-width: 40vw;
+    padding: 10px 14px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+}
+
+/* RIGHT SIDE */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* LOCATION DROPDOWN */
+.city-dropdown {
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+/* BUTTONS */
+.btn-primary {
+    background: #e50914;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.btn-outline {
+    border: 1px solid #e50914;
+    color: #e50914;
+    padding: 8px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.nav-link {
+    text-decoration: none;
+    font-weight: 600;
+    color: #333;
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+    .search-bar {
+        display: none;
+    }
+}
+
+/* ===== CAROUSEL ===== */
+.carousel {
+    position: relative;
+    width: 95%;
+    margin: 20px auto;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.slides img {
+    width: 100%;
+    height: 340px;
+    object-fit: cover;
+    display: none;
+}
+
+.slides img.active {
+    display: block;
+}
+
+/* arrows */
+.nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 32px;
+    background: rgba(0,0,0,0.4);
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.prev { left: 15px; }
+.next { right: 15px; }
+
+/* dots */
+.dots {
+    position: absolute;
+    bottom: 15px;
+    width: 100%;
+    text-align: center;
+}
+
+.dot {
+    height: 10px;
+    width: 10px;
+    margin: 0 4px;
+    background: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.dot.active {
+    background: red;
+}
+/* ===== CAROUSEL ===== */
+.carousel {
+    position: relative;
+    width: 95%;
+    margin: 20px auto;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.slides img {
+    width: 100%;
+    height: 340px;
+    object-fit: cover;
+    display: none;
+}
+
+.slides img.active {
+    display: block;
+}
+
+/* arrows */
+.nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 32px;
+    background: rgba(0,0,0,0.4);
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.prev { left: 15px; }
+.next { right: 15px; }
+
+/* dots */
+.dots {
+    position: absolute;
+    bottom: 15px;
+    width: 100%;
+    text-align: center;
+}
+
+.dot {
+    height: 10px;
+    width: 10px;
+    margin: 0 4px;
+    background: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.dot.active {
+    background: red;
+}
+
+/* ================= CAROUSEL ================= */
+
+.carousel {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    height: 320px;
+    margin: 20px auto;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.6s ease-in-out;
+}
+
+.carousel-slide {
+    width: 100%;
+    flex-shrink: 0;
+    object-fit: cover;
+}
+
+/* Buttons */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    font-size: 28px;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.carousel-btn.prev {
+    left: 15px;
+}
+
+.carousel-btn.next {
+    right: 15px;
+}
+
+.carousel-btn:hover {
+    background: rgba(0,0,0,0.7);
+}
+
+
+

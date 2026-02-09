@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>{{ movie.title }} ({{ movie.language }})</h1>
+<p>Available shows in <b>{{ city }}</b></p>
+
+<div class="theatres">
+    {% for data in theatre_map.values() %}
+        <div class="theatre-card">
+            <h3>{{ data.theatre.name }}</h3>
+
+            <div class="show-times">
+                {% for show in data.shows %}
+                    <a href="/seats/{{ show.id }}" class="show-time">
+                        {{ show.show_time }}
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
+        <p>No shows available for this location.</p>
+    {% endfor %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,189 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- ================= STEP-2 POPUP ================= -->
+<div id="seatPopup" class="popup-overlay">
+    <div class="popup-box">
+        <h3>How many seats?</h3>
+
+        <img id="seatImage"
+             src="{{ url_for('static', filename='img/bicycle.png') }}"
+             class="seat-image">
+
+        <div class="seat-count">
+            {% for i in range(1,7) %}
+            <button type="button"
+                    class="count-btn"
+                    data-count="{{ i }}">
+                {{ i }}
+            </button>
+            {% endfor %}
+        </div>
+
+        <button class="popup-confirm" id="startSelection" disabled>
+            Select Seats
+        </button>
+    </div>
+</div>
+
+<!-- ================= SUMMARY ================= -->
+<div class="booking-summary">
+    <span id="ticketCount">0 Tickets</span>
+    <span id="totalPrice">₹0</span>
+</div>
+
+<form method="post" action="/payment">
+
+    <!-- ================= BALCONY ================= -->
+    <div class="seat-section">
+        <h3 class="seat-class">₹120 Balcony</h3>
+
+        {% for seat in seat_map["Balcony"] %}
+            {% if loop.first or seat.row != seat_map["Balcony"][loop.index0-1].row %}
+                <div class="seat-row">
+                    <span class="row-label">{{ seat.row }}</span>
+            {% endif %}
+
+            {% if seat.is_booked %}
+                <span class="seat sold">{{ seat.number }}</span>
+            {% else %}
+                <label class="seat available">
+                    <input type="checkbox"
+                           name="seats"
+                           value="{{ seat.seat_number }}"
+                           data-price="120">
+                    <span>{{ seat.number }}</span>
+                </label>
+            {% endif %}
+
+            {% if loop.last or seat.row != seat_map["Balcony"][loop.index0+1].row %}
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <!-- ================= GAP ================= -->
+    <div class="class-gap"></div>
+
+    <!-- ================= FIRST CLASS ================= -->
+    <div class="seat-section">
+        <h3 class="seat-class">₹100 First Class</h3>
+
+        {% for seat in seat_map["First Class"] %}
+            {% if loop.first or seat.row != seat_map["First Class"][loop.index0-1].row %}
+                <div class="seat-row">
+                    <span class="row-label">{{ seat.row }}</span>
+            {% endif %}
+
+            {% if seat.is_booked %}
+                <span class="seat sold">{{ seat.number }}</span>
+            {% else %}
+                <label class="seat available">
+                    <input type="checkbox"
+                           name="seats"
+                           value="{{ seat.seat_number }}"
+                           data-price="100">
+                    <span>{{ seat.number }}</span>
+                </label>
+            {% endif %}
+
+            {% if loop.last or seat.row != seat_map["First Class"][loop.index0+1].row %}
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <!-- ================= SCREEN ================= -->
+    <div class="screen-wrapper">
+        <div class="screen-box"></div>
+        <p class="screen-text">All eyes this way please!</p>
+    </div>
+
+    <!-- IMPORTANT -->
+    <input type="hidden" name="total" id="totalInput">
+
+    <button class="confirm-btn" disabled>
+        Proceed to Payment
+    </button>
+</form>
+
+<!-- ================= JS ================= -->
+<script>
+    let MAX_SEATS = 0;
+
+    const images = {
+        1: "bicycle.png",
+        2: "bike.png",
+        3: "small-car.png",
+        4: "sedan.png",
+        5: "suv.png",
+        6: "suv.png"
+    };
+
+    const popup = document.getElementById("seatPopup");
+    const startBtn = document.getElementById("startSelection");
+    const seatImg = document.getElementById("seatImage");
+
+    // Seat count popup
+    document.querySelectorAll(".count-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            document.querySelectorAll(".count-btn")
+                .forEach(b => b.classList.remove("active"));
+
+            btn.classList.add("active");
+            MAX_SEATS = parseInt(btn.dataset.count);
+
+            seatImg.src = `/static/img/${images[MAX_SEATS]}`;
+            startBtn.disabled = false;
+        });
+    });
+
+    startBtn.addEventListener("click", () => {
+        popup.style.display = "none";
+    });
+
+    window.onload = () => {
+        popup.style.display = "flex";
+    };
+
+    // Seat selection logic
+    const checkboxes = document.querySelectorAll('input[name="seats"]');
+    const ticketCountEl = document.getElementById("ticketCount");
+    const totalPriceEl = document.getElementById("totalPrice");
+    const totalInput = document.getElementById("totalInput");
+    const confirmBtn = document.querySelector(".confirm-btn");
+
+    function updateSummary() {
+        let count = 0;
+        let total = 0;
+
+        checkboxes.forEach(cb => {
+            if (cb.checked) {
+                count++;
+                total += parseInt(cb.dataset.price);
+            }
+        });
+
+        ticketCountEl.textContent = `${count} Ticket${count !== 1 ? "s" : ""}`;
+        totalPriceEl.textContent = `₹${total}`;
+        totalInput.value = total;
+
+        confirmBtn.disabled = (count === 0 || count !== MAX_SEATS);
+    }
+
+    checkboxes.forEach(cb => {
+        cb.addEventListener("change", function () {
+            const selected =
+                document.querySelectorAll('input[name="seats"]:checked').length;
+
+            if (selected > MAX_SEATS) {
+                alert(`You can select only ${MAX_SEATS} seat(s)`);
+                this.checked = false;
+                return;
+            }
+            updateSummary();
+        });
+    });
+</script>
+
+{% endblock %}

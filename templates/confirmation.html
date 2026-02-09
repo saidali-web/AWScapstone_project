@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- PAGE TITLE -->
+<h2 class="page-title">🎟 Ticket Confirmation</h2>
+
+<div class="ticket-wrapper">
+    <div class="ticket-card">
+
+        <div class="ticket-header">
+            <div>
+                <h3>{{ booking.show.movie.title }}</h3>
+                <p>{{ booking.show.movie.language }}</p>
+                <p>{{ booking.show.show_time }}</p>
+                <p>{{ booking.show.theatre.name }}</p>
+            </div>
+            <span class="ticket-stamp">TICKET BOOKED</span>
+        </div>
+
+        <div class="ticket-info">
+            <div>
+                <strong>Booking ID</strong>
+                <p>{{ booking.id }}</p>
+            </div>
+            <div>
+                <strong>Seats</strong>
+                <p>{{ booking.seats }}</p>
+            </div>
+            <div>
+                <strong>Total Paid</strong>
+                <p>₹{{ total }}</p>
+            </div>
+        </div>
+
+        <div class="qr-section">
+            <img src="/{{ qr_image }}" alt="QR Code">
+            <p class="qr-id">{{ booking.id }}</p>
+        </div>
+
+        <div class="ticket-actions">
+            <a href="/download_ticket/{{ booking.id }}" class="confirm-btn">
+                ⬇ Download Ticket (PDF)
+            </a>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

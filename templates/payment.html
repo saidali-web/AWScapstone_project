@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- STEP BAR -->
+<div class="steps-bar">
+    <div class="step done">1 Select Seats</div>
+    <div class="step done">2 Tickets</div>
+    <div class="step active">3 Payment</div>
+    <div class="step">4 Confirmation</div>
+</div>
+
+<h2>Payment</h2>
+
+<p><strong>Selected Seats:</strong> {{ seats | join(", ") }}</p>
+<p><strong>Total Amount:</strong> ₹{{ total }}</p>
+
+<hr>
+
+<form method="post" action="/confirm_payment">
+
+    <h3>Choose Payment Method</h3>
+
+    <label>
+        <input type="radio" name="payment_method" value="UPI" required>
+        UPI
+    </label><br>
+
+    <label>
+        <input type="radio" name="payment_method" value="CARD">
+        Credit / Debit Card
+    </label><br>
+
+    <label>
+        <input type="radio" name="payment_method" value="NETBANKING">
+        Net Banking
+    </label><br><br>
+
+    <input type="hidden" name="total" value="{{ total }}">
+
+    <button type="submit" class="confirm-btn">
+        Pay ₹{{ total }}
+    </button>
+</form>
+
+{% endblock %}

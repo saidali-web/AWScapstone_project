@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Login</h2>
+
+<form method="post" action="/login" class="auth-form">
+    <label>Username</label>
+    <input type="text" name="username" required>
+
+    <label>Password</label>
+    <input type="password" name="password" required>
+
+    <button type="submit" class="login-btn">Login</button>
+</form>
+
+<p class="auth-switch">
+    Don’t have an account?
+    <a href="/signup">Sign up</a>
+</p>
+
+{% endblock %}

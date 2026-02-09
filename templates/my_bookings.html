@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>My Bookings</h2>
+
+<div class="bookings">
+    {% for booking in bookings %}
+        <div class="booking-card">
+            <h3>{{ booking.show.movie.title }}</h3>
+
+            <p>
+                <b>Theatre:</b> {{ booking.show.theatre.name }}
+            </p>
+
+            <p>
+                <b>City:</b> {{ booking.show.theatre.city }}
+            </p>
+
+            <p>
+                <b>Show Time:</b> {{ booking.show.show_time }}
+            </p>
+
+            <p>
+                <b>Seats:</b> {{ booking.seats }}
+            </p>
+        </div>
+    {% else %}
+        <p>You have no bookings yet.</p>
+    {% endfor %}
+</div>
+
+{% endblock %}

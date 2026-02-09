@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>🎉 Booking Confirmed</h2>
+
+<p><strong>Booking ID:</strong> {{ booking.id }}</p>
+<p><strong>Seats:</strong> {{ booking.seats }}</p>
+<p><strong>Total Paid:</strong> ₹{{ total }}</p>
+
+<div class="qr-box">
+    <img src="data:image/png;base64,{{ qr_code }}" alt="QR Code">
+</div>
+
+<p>Show this QR code at the theatre entrance</p>
+
+<a href="/my_bookings">
+    <button class="confirm-btn">Go to My Bookings</button>
+</a>
+
+{% endblock %}
